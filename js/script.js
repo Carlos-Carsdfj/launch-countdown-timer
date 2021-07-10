@@ -2,18 +2,22 @@ const $time = document.querySelector('#time')
 const $form = document.querySelector('#form')
 const $endDate = document.querySelector('#endDate')
 const $reset = document.querySelector('#reset')
-const $days = document.querySelector('#days')
-const $hours = document.querySelector('#hours')
-const $minutes = document.querySelector('#minutes')
-const $seconds = document.querySelector('#seconds')
+const $days_top = document.querySelector('#days-top')
+const $days_bottom = document.querySelector('#days-bottom')
+const $hours_top = document.querySelector('#hours-top')
+const $hours_bottom = document.querySelector('#hours-bottom')
+const $minutes_top = document.querySelector('#minutes-top')
+const $minutes_bottom = document.querySelector('#minutes-bottom')
+const $seconds_top = document.querySelector('#seconds-top')
+const $seconds_bottom = document.querySelector('#seconds-bottom')
 const $content = document.querySelector('.content')
+
 
 $content.style.display = 'none'
 
-
+//muestra el contenido una vez terminado de cargar la pagina y los datos
 window.addEventListener('load', (event) => {
-$content.style.display = 'block'
-  
+$content.style.display = 'block'  
 })
 
 
@@ -22,26 +26,18 @@ console.log(date.getMonth())
 let dateInit = date.getFullYear(4)+'-'+('0'+date.getMonth()).slice(-2)+'-'+('0'+date.getDate()).slice(-2)
 console.log(dateInit)
 $endDate.min = dateInit // YY/MM/DD
-
-
-
-
-
     const SECOND = 1000
     const MINUTE = SECOND * 60
     const HOUR = MINUTE * 60
     const DAY = HOUR * 24
-    var timer
-    
-    
-    
-    
-    
-    
+    var timer 
+ 
+  //principio de clase que realiza el conteo 
 class countDownTime{
   constructor(date){
     this.end = new Date(date)
   }
+
   metodo(){   
     var now = new Date();
     var  distance = this.end - now;
@@ -54,9 +50,8 @@ class countDownTime{
     let seconds = Math.floor((distance % MINUTE) / SECOND);
     return {days, hours, minutes, seconds}
   }
-
-
 }
+//fin de clase que realiza el conteo 
 
 
 
@@ -73,17 +68,20 @@ function showTimer(){
   const {days, hours, minutes, seconds} = retorno
   
 
-  $days.innerHTML = days
-  $hours.innerHTML = hours 
-  $minutes.innerHTML = minutes 
-  $seconds.innerHTML = seconds 
-}
   
+  $days_top.innerHTML = days
+  $days_bottom.innerHTML = days 
+  $hours_top.innerHTML = hours 
+  $hours_bottom.innerHTML = hours
+  $minutes_top.innerHTML = minutes
+  $minutes_bottom.innerHTML = minutes
+  $seconds_top.innerHTML = seconds
+  $seconds_bottom.innerHTML =seconds
+}  
 //
 
 
 //fecha calendario  formulario 
-
 $form.addEventListener('submit',function(ev){
   ev.preventDefault()
   const {dateInit} = this
@@ -91,7 +89,8 @@ $form.addEventListener('submit',function(ev){
   initCountDown(dateInit.value) 
 })
 
-  // funcion que inicia el timer y vizualisa el reiniciar y quita el // form                     
+
+// funcion que inicia el timer y vizualisa el reiniciar y quita el // form                     
 function initCountDown(value){
   window.localStorage.setItem('timeSet',value)
   count = new countDownTime(value)
@@ -105,30 +104,32 @@ $reset.addEventListener('click',()=>{
   $reset.style.display = 'none'
   clearInterval(timer)
   localStorage.clear()
-  $days.innerHTML ='0'
-  $hours.innerHTML ='0'
-  $minutes.innerHTML ='0'
-  $seconds.innerHTML ='0'
+  $days_top.innerHTML ='0'
+  $days_bottom.innerHTML ='0'
+  $hours_top.innerHTML ='0'
+  $hours_bottom.innerHTML ='0'
+  $minutes_top.innerHTML ='0'
+  $minutes_bottom.innerHTML ='0'
+  $seconds_top.innerHTML ='0'
+  $seconds_bottom.innerHTML ='0'
   
 } )
-
-
 
 //condicional que comprueba el estorage y ve si ya tienes una fecha //seteada
 if (window.localStorage.getItem('timeSet')){
   let dateInit = window.localStorage.getItem('timeSet')
- 
-  
- $form.style.display = 'none'
-  
- $reset.style.display = 'block'
-  
+ $form.style.display = 'none'  
+ $reset.style.display = 'block'  
   initCountDown(dateInit)
   
   
 }else{
   $reset.style.display = 'none'
+
 }
+
+
+
 
 
 
