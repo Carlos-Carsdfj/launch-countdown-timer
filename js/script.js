@@ -22,9 +22,9 @@ $content.style.display = 'block'
 
 
 let date = new Date()
-console.log(date.getMonth())
-let dateInit = date.getFullYear(4)+'-'+('0'+date.getMonth()).slice(-2)+'-'+('0'+date.getDate()).slice(-2)
-console.log(dateInit)
+
+let dateInit = date.getFullYear(4)+'-'+('0'+(date.getMonth()+1)).slice(-2)+'-'+('0'+(date.getDate())).slice(-2)
+
 $endDate.min = dateInit // YY/MM/DD
     const SECOND = 1000
     const MINUTE = SECOND * 60
@@ -34,16 +34,19 @@ $endDate.min = dateInit // YY/MM/DD
  
   //principio de clase que realiza el conteo 
 class countDownTime{
-  constructor(date){
-    this.end = new Date(date)
+  
+  constructor(date){ 
+    this.end = new Date(date+' 00:00:00')
+    console.log(this.end)
   }
 
   metodo(){   
     var now = new Date();
-    var  distance = this.end - now;
-    if(distance <0){    
+    var  distance = this.end.getTime() - now.getTime(); 
+    if(distance <0){
       return false
     }     
+
     let days = Math.floor(distance / DAY);
     let hours = Math.floor((distance % DAY) / HOUR);
     let minutes = Math.floor((distance % HOUR) / MINUTE);
@@ -86,7 +89,9 @@ $form.addEventListener('submit',function(ev){
   ev.preventDefault()
   const {dateInit} = this
   dateInit.value
+  
   initCountDown(dateInit.value) 
+  
 })
 
 
