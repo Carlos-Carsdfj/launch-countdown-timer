@@ -97,7 +97,7 @@ async function showTimer(){
     $days_bottom.innerHTML =''
     $bottom_span_days.classList.add('bottom-span-change')
     await sleep(100)
-    $bottom_span_hours.classList.remove('bottom-span-change')
+    $bottom_span_days.classList.remove('bottom-span-change')
     $days_bottom.innerHTML = days
   }
 //Efecto al cambiar horas
