@@ -38,10 +38,11 @@ body{
   display:flex;
   flex-direction: column;
   justify-content: center;
-  gap: 2px;
+  gap: 1px;
 }
 .top-span{
   background-color: rgb(202, 202, 202);
+  border: 1px solid rgba(0, 0, 0, 0.192);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   position: relative;
@@ -50,9 +51,12 @@ body{
   display: block;
   height: 50%;
   overflow: hidden;
+  transition: 0.1s all;
 }
 .bottom-span{
+  transition: 0.1s all;
   background-color: rgb(202, 202, 202);
+  border: 1px solid rgba(0, 0, 0, 0.192);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   position: relative;
@@ -62,6 +66,26 @@ body{
   overflow: hidden;
   height: 50%;
 }
+
+.top-box-shawdo-change{
+  transition: 0.1s all;
+  box-shadow: 0 0 5px rgba(0,0,0,.5);
+}
+.bottom-box-shawdo-change{
+  transition: 0.1s all;
+  box-shadow: 0 0 5px rgba(0,0,0,.5);
+}
+.top-span-change{
+  transition: 0.1s all;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.bottom-span-change{
+  transition: 0.1s all;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
 .top-number{
   position: absolute;
   bottom: -30px;
@@ -71,48 +95,35 @@ body{
   position: absolute;
   top: -30px;
 }
-/*.number-content::before{
-  content: '';
-  border: 1px solid black;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+
+@media (max-width:600px){
+
+  .number-content {
+    font-size: 30px;
+    width: 50px;
+   
+  }
+  
+  .top-number{
+    
+    bottom: -20px;
+  }
+  
+  .bottom-number{
+    
+    top: -20px;
+  }
+
+.number-div{
   height: 50px;
-  width: 100px;
-  z-index:1;
-  display: block;
-  top:-25px;
-  position:absolute;
+  width: 50px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+}
+
   
 }
-.number-content::after{
-  content: '';
-  border: 1px solid black;
-  height: 55px;
-  width: 100px;
-  z-index:1;
-  display: block;
-  bottom:-25px;
-  position:absolute;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-
-}*/
 
 
-
-@keyframes revolve{
-
-
-  from{
-
-    transform: rotatex(0);
-    
-    
-  }
-  to{
-
-    transform: rotatex(360deg);
-    
-  }
-
-}

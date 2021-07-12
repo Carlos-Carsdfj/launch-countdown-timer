@@ -11,7 +11,16 @@ const $minutes_bottom = document.querySelector('#minutes-bottom')
 const $seconds_top = document.querySelector('#seconds-top')
 const $seconds_bottom = document.querySelector('#seconds-bottom')
 const $content = document.querySelector('.content')
+const $top_span_days = document.querySelector('#top-span-days')
+const $bottom_span_days = document.querySelector('#bottom-span-days')
+const $top_span_hours = document.querySelector('#top-span-hours')
+const $bottom_span_hours = document.querySelector('#bottom-span-hours')
+const $top_span_minutes = document.querySelector('#top-span-minutes')
+const $bottom_span_minutes = document.querySelector('#bottom-span-minutes')
+const $top_span_seconds = document.querySelector('#top-span-seconds')
+const $bottom_span_seconds = document.querySelector('#bottom-span-seconds')
 
+let count 
 
 $content.style.display = 'none'
 
@@ -58,10 +67,12 @@ class countDownTime{
 
 
 
-let count 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 //metodo que cambia el label de la fecha 
-function showTimer(){ 
+async function showTimer(){ 
   let retorno = count.metodo() 
   if(!retorno){
     clearInterval(timer)
@@ -71,15 +82,87 @@ function showTimer(){
   const {days, hours, minutes, seconds} = retorno
   
 
+//Efecto al cambiar dias
+  if($days_top.innerHTML != days ){ 
+    $top_span_days.classList.add('top-box-shawdo-change')
+    $days_top.innerHTML = ''
+    await sleep(100)   
+    $days_top.innerHTML = days
+    $top_span_days.classList.add('top-span-change')
+    $bottom_span_days.classList.add('bottom-box-shawdo-change')
+    await sleep(100)
+    $top_span_days.classList.remove('top-box-shawdo-change')
+    $top_span_days.classList.remove('top-span-change')
+    $bottom_span_days.classList.remove('bottom-box-shawdo-change')
+    $days_bottom.innerHTML =''
+    $bottom_span_days.classList.add('bottom-span-change')
+    await sleep(100)
+    $bottom_span_hours.classList.remove('bottom-span-change')
+    $days_bottom.innerHTML = days
+  }
+//Efecto al cambiar horas
+  if($hours_top.innerHTML != hours ){ 
+    $top_span_hours.classList.add('top-box-shawdo-change')
+    $hours_top.innerHTML = ''
+    await sleep(100)   
+    $hours_top.innerHTML = hours
+    $top_span_hours.classList.add('top-span-change')
+    $bottom_span_hours.classList.add('bottom-box-shawdo-change')
+    await sleep(100)
+    $top_span_hours.classList.remove('top-box-shawdo-change')
+    $top_span_hours.classList.remove('top-span-change')
+    $bottom_span_hours.classList.remove('bottom-box-shawdo-change')
+    $hours_bottom.innerHTML =''
+    $bottom_span_hours.classList.add('bottom-span-change')
+    await sleep(100)
+    $bottom_span_hours.classList.remove('bottom-span-change')
+    $hours_bottom.innerHTML = hours
+  }
+//Efecto al cambiar minutos
+  if($minutes_top.innerHTML != minutes ){ 
+    $top_span_minutes.classList.add('top-box-shawdo-change')
+    $minutes_top.innerHTML = ''
+    await sleep(100)   
+    $minutes_top.innerHTML = minutes
+    $top_span_minutes.classList.add('top-span-change')
+    $bottom_span_minutes.classList.add('bottom-box-shawdo-change')
+    await sleep(100)
+    $top_span_minutes.classList.remove('top-box-shawdo-change')
+    $top_span_minutes.classList.remove('top-span-change')
+    $bottom_span_minutes.classList.remove('bottom-box-shawdo-change')
+    $minutes_bottom.innerHTML =''
+    $bottom_span_minutes.classList.add('bottom-span-change')
+    await sleep(100)
+    $bottom_span_minutes.classList.remove('bottom-span-change')
+    $minutes_bottom.innerHTML = minutes
+  }
+//Efecto al cambiar segundos
+  if($seconds_top.innerHTML != seconds){ 
+    $top_span_seconds.classList.add('top-box-shawdo-change')
+    $seconds_top.innerHTML = ''
+    await sleep(100)   
+    $seconds_top.innerHTML = seconds
+    $top_span_seconds.classList.add('top-span-change')
+    $bottom_span_seconds.classList.add('bottom-box-shawdo-change')
+    await sleep(100)
+    $top_span_seconds.classList.remove('top-box-shawdo-change')
+    $top_span_seconds.classList.remove('top-span-change')
+    $bottom_span_seconds.classList.remove('bottom-box-shawdo-change')
+    $seconds_bottom.innerHTML =''
+    $bottom_span_seconds.classList.add('bottom-span-change')
+    await sleep(100)
+    $bottom_span_seconds.classList.remove('bottom-span-change')
+    $seconds_bottom.innerHTML = seconds
+  }
   
   $days_top.innerHTML = days
-  $days_bottom.innerHTML = days 
-  $hours_top.innerHTML = hours 
-  $hours_bottom.innerHTML = hours
-  $minutes_top.innerHTML = minutes
-  $minutes_bottom.innerHTML = minutes
-  $seconds_top.innerHTML = seconds
-  $seconds_bottom.innerHTML =seconds
+
+  $days_bottom.innerHTML = days
+
+
+  
+ 
+  
 }  
 //
 
